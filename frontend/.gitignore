@@ -1,0 +1,24 @@
+# Node.js 関連
+node_modules/
+dist/
+.env
+
+# Viteのキャッシュ
+.vite/
+
+# ログや一時ファイル
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# VSCode の設定ファイル
+.vscode/
+
+# OSごとの不要ファイル
+.DS_Store
+Thumbs.db
+
+# その他
+.idea/
