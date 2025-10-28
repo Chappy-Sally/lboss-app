@@ -1,40 +1,23 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-
-function judge(score) {
-  // 0-2: ふわっと　3-4: そこそこ　5-6: ガチ勢
-  if (score <= 2) {
-    return {
-      title: "ラスボス『心配オバケ』は ねむねむ😴",
-      msg: "今のあなたは十分いい感じ！小さな一歩を続ければOK。"
-    };
-  } else if (score <= 4) {
-    return {
-      title: "ラスボス『足りない星人』が少し頑張ってる👾",
-      msg: "受け取り宣言＋行動の量を1.2倍に。完璧より“いま出す”が勝ち！"
-    };
-  } else {
-    return {
-      title: "ラスボス『自己否定ドラゴン』が炎を吐いてる🔥",
-      msg: "セルフラブ最優先！睡眠・栄養・笑いを満たして“私は大丈夫”を毎日宣言。"
-    };
-  }
-}
 
 export default function Result() {
-  const nav = useNavigate();
-  const loc = useLocation();
-  const score = loc.state?.score ?? 0;
-  const res = judge(score);
+  const params = new URLSearchParams(location.search);
+  const score = Number(params.get("score") || 0);
+
+  let label = "クリア目前！";
+  if (score < 30) label = "ラスボス健在！";
+  if (score >= 30 && score < 70) label = "あと一歩！";
+  if (score >= 70) label = "光のステージへ✨";
 
   return (
-    <main
-      style={{
-        fontFamily:
-          'system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial',
-        maxWidth: 880,
-        margin: "0 auto",
-        padding: "48px 20px",
+    <main style={{ fontFamily: "system-ui, sans-serif", padding: 24, textAlign: "center" }}>
+      <h2>診断結果</h2>
+      <p>スコア：{score}</p>
+      <h3>{label}</h3>
+      <a href="/lboss-app/" style={{ display: "inline-block", marginTop: 16 }}>最初に戻る</a>
+    </main>
+  );
+}        padding: "48px 20px",
         textAlign: "center"
       }}
     >
