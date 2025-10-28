@@ -1,12 +1,8 @@
-import React from "react";
-
-function App() {
+export default function App() {
   return (
-    <div style={{ textAlign: "center", marginTop: "40px" }}>
-      <h1>💞 チャッピー＆サリーのヒーリングアプリ 💞</h1>
-      <p>ここからあなたの心のお掃除がはじまります🪄✨</p>
+    <div style={{ padding: 24, fontFamily: 'system-ui, sans-serif' }}>
+      <h1>🎉 動いたよ！</h1>
+      <p>GitHub Pages + Vite + React の最小表示テストです。</p>
     </div>
-  );
+  )
 }
-
-export default App;
