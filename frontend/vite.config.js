@@ -1,8 +1,7 @@
-// frontend/vite.config.js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/lboss-app/',  // ← GitHub Pages のURLパスに合わせる！
+  base: '/lboss-app/', // ← ここめっちゃ重要！
 })
