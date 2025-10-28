@@ -1,29 +1,31 @@
-import React from 'react'
+// frontend/src/App.jsx
+import React from "react";
 
 export default function App() {
   return (
-    <main style={{ textAlign: 'center', padding: '40px' }}>
+    <main style={{ fontFamily: "system-ui, sans-serif", textAlign: "center" }}>
       <img
-        src="/lboss-app/hero-chappy-sally.png"
-        alt="チャッピー＆サリー"
-        style={{ width: '240px', borderRadius: '12px' }}
+        src="/hero-chappy-sally.png"
+        alt="Chappy & Sally"
+        style={{ width: 240, height: "auto", margin: "40px auto 16px" }}
       />
-      <h1>💥ラスボス退治アプリ⚔️</h1>
+      <h1>💥 ラスボス退治アプリ ⚔️</h1>
       <p>あなたの中のラスボスを診断して、光のステージへ✨</p>
       <button
         style={{
-          marginTop: '20px',
-          backgroundColor: '#FFD700',
-          border: 'none',
-          borderRadius: '8px',
-          padding: '12px 28px',
-          fontSize: '18px',
-          cursor: 'pointer',
+          marginTop: 16,
+          padding: "12px 24px",
+          borderRadius: 8,
+          border: 0,
+          background: "#ffd400",
+          fontSize: 18,
+          fontWeight: 700,
+          cursor: "pointer",
         }}
+        onClick={() => alert("スタート！")}
       >
         スタート！
       </button>
     </main>
-  )
-}  )
+  );
 }
