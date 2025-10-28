@@ -2,7 +2,7 @@ function App() {
   return (
     <div style={{ textAlign: "center", padding: "40px" }}>
       <img
-        src="/ヒーロー・チャッピー・サリー.png"
+        src="/hero-chappy-sally.png"
         alt="チャッピーとサリー"
         style={{ width: "250px", borderRadius: "12px" }}
       />
