@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/lboss-app/', // ← ここめっちゃ重要！
+  base: '/lboss-app/', // ← ここがGitHub Pages用のパス！
 })
