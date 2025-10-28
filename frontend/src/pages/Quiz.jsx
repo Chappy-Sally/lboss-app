@@ -1,40 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const QUESTIONS = [
-  "最近『不安・心配の声』が頭の中でよく響く。",
-  "他人の目や評価を気にしすぎて動きが止まることがある。",
-  "やる前から『どうせムリ』と思ってしまう。",
-  "過去の失敗やモヤモヤを引きずりがちだ。",
-  "お金・人間関係・時間の『足りない』にフォーカスしがち。",
-  "完璧じゃないと出せない、が口ぐせ。"
-];
-
 export default function Quiz() {
-  const [step, setStep] = useState(0);
-  const [score, setScore] = useState(0);
-  const navigate = useNavigate();
+  const nav = useNavigate();
 
-  const onAnswer = (yes) => {
-    if (yes) setScore((s) => s + 1);
-    const next = step + 1;
-    if (next >= QUESTIONS.length) {
-      navigate("/result", { state: { score } });
-    } else {
-      setStep(next);
-    }
+  // ここは仮の診断ロジック（後で差し替えOK）
+  const doDiagnose = () => {
+    const score = Math.floor(Math.random() * 100);
+    nav("/result?score=" + score);
   };
 
-  const progress = Math.round(((step + 1) / QUESTIONS.length) * 100);
-
   return (
-    <main
-      style={{
-        fontFamily:
-          'system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial',
-        maxWidth: 860,
-        margin: "0 auto",
-        padding: "36px 20px",
+    <main style={{ fontFamily: "system-ui, sans-serif", padding: 24, textAlign: "center" }}>
+      <h2>診断クイズ</h2>
+      <p>（ここに質問UIを入れていくよ）</p>
+      <button
+        onClick={doDiagnose}
+        style={{
+          marginTop: 16,
+          padding: "12px 24px",
+          borderRadius: 8,
+          border: 0,
+          background: "#ffd400",
+          fontSize: 16,
+          fontWeight: 700,
+          cursor: "pointer",
+        }}
+      >
+        診断する
+      </button>
+    </main>
+  );
+}        padding: "36px 20px",
         textAlign: "center"
       }}
     >
