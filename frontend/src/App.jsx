@@ -42,30 +42,4 @@ export default function App() {
       <Route path="/result" element={<Result />} />
     </Routes>
   );
-}  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/quiz" element={<Quiz />} />
-      <Route path="/result" element={<Result />} />
-    </Routes>
-  );
-}          fontWeight: 800,
-          cursor: "pointer",
-          boxShadow: "0 6px 16px rgba(0,0,0,.12)"
-        }}
-      >
-        スタート！
-      </button>
-    </main>
-  );
-}
-
-export default function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Landing />} />
-      <Route path="/quiz" element={<Quiz />} />
-      <Route path="/result" element={<Result />} />
-    </Routes>
-  );
 }
