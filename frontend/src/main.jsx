@@ -5,7 +5,9 @@ import App from "./App.jsx";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter basename="/lboss-app">
-    <App />
-  </BrowserRouter>
+  <React.StrictMode>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
 );
