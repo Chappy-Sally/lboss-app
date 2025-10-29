@@ -5,11 +5,11 @@ const MESSAGE = {
   anger:
     "ラスボスは『怒り』。境界線づくり＆深呼吸でクールダウン。肩の力を抜いて、チャッピーのニコッ😁をまねっこ！",
   fear:
-    "ラスボスは『不安』。安心スイッチON。今ここに意識を戻して、小さな一歩をチョンッと踏み出そう🐾",
+    "ラスボスは『不安』。安心スイッチON。今ここに意識を戻して、小さな一歩をチョンッと🐾",
   sadness:
     "ラスボスは『悲しみ』。自分に優しく“よしよし”。温かい飲み物＆深い呼吸でハートぽかぽか🌷",
   doubt:
-    "ラスボスは『自己否定』。鏡の前で“私は大丈夫、できる人”。小さな成功メモで自己信頼チャージ✨",
+    "ラスボスは『自己否定』。鏡の前で“私は大丈夫、できる”。小さな成功メモで自己信頼チャージ✨",
 };
 
 const MANTRA = {
@@ -22,14 +22,11 @@ const MANTRA = {
 export default function Result() {
   const nav = useNavigate();
   const { state } = useLocation();
-  const answer = state?.answer ?? "fear"; // 直接アクセス時の保険
+  const answer = state?.answer ?? "fear";
 
   return (
     <main className="page">
-      <div className="sparkle-bg" aria-hidden="true"></div>
-
-      <img src="/hero-chappy-sally.png" alt="" className="hero small" />
-
+      <img src="hero-chappy-sally.png" alt="" className="hero small" />
       <h2 className="title">診断結果</h2>
       <p className="result">{MESSAGE[answer]}</p>
 
