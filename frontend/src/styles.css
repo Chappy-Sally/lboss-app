@@ -1,4 +1,4 @@
-/* 画面ぜんぶにキラキラ（やさしいゴールド系） */
+/* 画面全体にやさしいゴールド系のキラキラ背景 */
 html, body, #root {
   height: 100%;
 }
@@ -14,7 +14,7 @@ body {
   position: relative;
 }
 
-/* ふわっと光の粒（2層） */
+/* ふわっと漂う光の粒（2層） */
 body::before,
 body::after {
   content: "";
@@ -49,7 +49,7 @@ body::after {
   100% { transform: translate3d(0, 0, 0) scale(1); }
 }
 
-/* ボタンやカードが背景と重なっても読みやすいように軽い影 */
+/* 使いたいページで包める軽いカード影（任意） */
 .k-card {
   background: #fff;
   border-radius: 12px;
