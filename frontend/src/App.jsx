@@ -25,6 +25,7 @@ function Home() {
           fontSize: 18,
           fontWeight: 700,
           cursor: "pointer",
+          boxShadow: "0 6px 16px rgba(0,0,0,.12)"
         }}
       >
         スタート！
@@ -35,6 +36,13 @@ function Home() {
 
 export default function App() {
   return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/quiz" element={<Quiz />} />
+      <Route path="/result" element={<Result />} />
+    </Routes>
+  );
+}  return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/quiz" element={<Quiz />} />
