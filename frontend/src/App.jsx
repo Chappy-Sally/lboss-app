@@ -6,14 +6,25 @@ import Result from "./pages/Result.jsx";
 function Home() {
   const nav = useNavigate();
   return (
-    <main style={{ fontFamily: "system-ui, sans-serif", textAlign: "center" }}>
+    <main
+      style={{
+        fontFamily: "system-ui, sans-serif",
+        maxWidth: 720,
+        margin: "48px auto",
+        padding: "0 16px",
+        textAlign: "center",
+      }}
+    >
+      {/* 画像パスは先頭スラッシュ無し！ */}
       <img
-        src="/hero-chappy-sally.png"
+        src="hero-chappy-sally.png"
         alt="Chappy & Sally"
-        style={{ width: 240, height: "auto", marginTop: 28 }}
+        style={{ width: 240, height: "auto", marginBottom: 16 }}
       />
+
       <h1>💥 ラスボス退治アプリ ⚔️</h1>
       <p>あなたの中のラスボスを診断して、光のステージへ✨</p>
+
       <button
         onClick={() => nav("/quiz")}
         style={{
@@ -25,7 +36,7 @@ function Home() {
           fontSize: 18,
           fontWeight: 700,
           cursor: "pointer",
-          boxShadow: "0 6px 16px rgba(0,0,0,.12)"
+          boxShadow: "0 6px 16px rgba(0,0,0,.12)",
         }}
       >
         スタート！
