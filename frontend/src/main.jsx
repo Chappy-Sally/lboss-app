@@ -1,19 +1,14 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./App.jsx";
-import Quiz from "./pages/Quiz.jsx";
-import Result from "./pages/Result.jsx";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App.jsx";
+
+// ★ キラキラ背景を読み込む（追加行）
+import "./styles.css";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter basename="/">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/quiz" element={<Quiz />} />
-        <Route path="/result" element={<Result />} />
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 );
