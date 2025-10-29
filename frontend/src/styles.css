@@ -1,0 +1,57 @@
+/* 画面ぜんぶにキラキラ（やさしいゴールド系） */
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+
+  /* ベースのグラデ背景 */
+  background: linear-gradient(135deg, #fffaf0 0%, #fff4c1 100%);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ふわっと光の粒（2層） */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: -20% -20%;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  opacity: .7;
+  animation: sparkle 18s linear infinite;
+}
+
+body::before {
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,.9) 0 10px, transparent 12px),
+    radial-gradient(circle at 85% 75%, rgba(255,255,255,.75) 0 14px, transparent 16px),
+    radial-gradient(circle at 40% 60%, rgba(255,255,255,.65) 0 8px, transparent 10px);
+  filter: blur(0.3px);
+}
+
+body::after {
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(255,255,255,.6) 0 6px, transparent 8px),
+    radial-gradient(circle at 70% 30%, rgba(255,255,255,.8) 0 9px, transparent 11px),
+    radial-gradient(circle at 50% 10%, rgba(255,255,255,.5) 0 7px, transparent 9px);
+  animation-duration: 24s;
+  filter: blur(0.6px);
+}
+
+@keyframes sparkle {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-2%, -3%, 0) scale(1.02); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+/* ボタンやカードが背景と重なっても読みやすいように軽い影 */
+.k-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.10);
+}
