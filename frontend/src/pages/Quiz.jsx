@@ -1,87 +1,93 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const QUESTIONS = [
   {
-    title: "今いちばん近いのはどれ？",
-    options: ["イライラ", "不安", "悲しみ", "もやもや"],
+    q: "最近、ついイライラしてしまう？",
+    options: [
+      { label: "イライラする", tag: "anger" },
+      { label: "不安になりやすい", tag: "fear" },
+      { label: "しょんぼりしがち", tag: "sadness" },
+      { label: "自分を疑いがち", tag: "doubt" },
+    ],
   },
   {
-    title: "体感としては？",
-    options: ["肩や首がこる", "胸がざわつく", "涙が出そう", "頭の中がぐるぐる"],
+    q: "夜、頭の中でグルグル考えが止まらないことが多い？",
+    options: [
+      { label: "怒りや後悔でモヤモヤ", tag: "anger" },
+      { label: "先のことが怖い", tag: "fear" },
+      { label: "気力がわかない", tag: "sadness" },
+      { label: "自信がない", tag: "doubt" },
+    ],
   },
   {
-    title: "今すぐ叶えたいのは？",
-    options: ["落ち着きたい", "安心したい", "癒やされたい", "スッキリしたい"],
+    q: "人の言動に過剰に反応してしまうのは？",
+    options: [
+      { label: "イラッとする", tag: "anger" },
+      { label: "ビクッとする", tag: "fear" },
+      { label: "傷つきやすい", tag: "sadness" },
+      { label: "自分を責める", tag: "doubt" },
+    ],
+  },
+  {
+    q: "今いちばん近い感覚はどれ？",
+    options: [
+      { label: "カッとなる", tag: "anger" },
+      { label: "ドキドキ不安", tag: "fear" },
+      { label: "なんか寂しい", tag: "sadness" },
+      { label: "私で大丈夫？", tag: "doubt" },
+    ],
+  },
+  {
+    q: "一言で言うと、最近の私のテーマは？",
+    options: [
+      { label: "境界線（怒）", tag: "anger" },
+      { label: "安心（不）", tag: "fear" },
+      { label: "癒し（悲）", tag: "sadness" },
+      { label: "自己肯定（疑）", tag: "doubt" },
+    ],
   },
 ];
 
 export default function Quiz() {
   const nav = useNavigate();
   const [step, setStep] = useState(0);
-  const [picked, setPicked] = useState([]);
+  const [score, setScore] = useState({ anger: 0, fear: 0, sadness: 0, doubt: 0 });
 
-  const onPick = (v) => {
-    const next = [...picked, v];
-    setPicked(next);
-    if (step + 1 < QUESTIONS.length) {
+  const current = useMemo(() => QUESTIONS[step], [step]);
+
+  const onSelect = (tag) => {
+    const next = { ...score, [tag]: score[tag] + 1 };
+    setScore(next);
+
+    if (step < QUESTIONS.length - 1) {
       setStep(step + 1);
     } else {
-      // ざっくり多数決で結果分類
-      const joined = next.join(" ");
-      let answer = "不明";
-      if (/(イライラ|肩|こる)/.test(joined)) answer = "怒り";
-      else if (/(不安|胸|安心)/.test(joined)) answer = "不安";
-      else if (/(悲しみ|涙|癒)/.test(joined)) answer = "悲しみ";
-      else if (/(もや|頭|スッキリ)/.test(joined)) answer = "混乱";
-
-      nav("/result", { state: { answer } });
+      // 集計：最大スコアのタグを求める
+      const winner = Object.entries(next).sort((a, b) => b[1] - a[1])[0][0];
+      nav("/result", { state: { answer: winner } });
     }
   };
 
-  const q = QUESTIONS[step];
-
   return (
-    <main
-      style={{
-        fontFamily: "system-ui, sans-serif",
-        maxWidth: 720,
-        margin: "0 auto",
-        minHeight: "100vh",
-        textAlign: "center",
-        background: "linear-gradient(135deg, #fffaf0 0%, #fff4c1 100%)",
-        backgroundImage:
-          "radial-gradient(circle at 12% 22%, rgba(255,255,255,.9) 0%, transparent 22%), radial-gradient(circle at 88% 78%, rgba(255,255,255,.75) 0%, transparent 28%)",
-        padding: "48px 16px",
-        boxSizing: "border-box",
-      }}
-    >
-      <h2 style={{ margin: 0, fontSize: 28 }}>Q{step + 1}. {q.title}</h2>
+    <main className="page">
+      <div className="sparkle-bg" aria-hidden="true"></div>
 
-      <div style={{ marginTop: 24, display: "grid", gap: 12 }}>
-        {q.options.map((op) => (
-          <button
-            key={op}
-            onClick={() => onPick(op)}
-            style={{
-              padding: "14px 18px",
-              borderRadius: 12,
-              border: 0,
-              fontSize: 18,
-              fontWeight: 700,
-              background: "#ffffff",
-              cursor: "pointer",
-              boxShadow: "0 6px 16px rgba(0,0,0,.10)",
-            }}
-          >
-            {op}
-          </button>
+      <h2 className="qtitle">
+        {`Q${step + 1}. ${current.q}`}
+      </h2>
+
+      <ul className="list">
+        {current.options.map((op, i) => (
+          <li key={i}>
+            <button className="option" onClick={() => onSelect(op.tag)}>
+              {op.label}
+            </button>
+          </li>
         ))}
-      </div>
+      </ul>
 
-      <div style={{ marginTop: 24, fontSize: 14, opacity: 0.7 }}>
-        {step + 1} / {QUESTIONS.length}
-      </div>
+      <div className="pager">{step + 1} / {QUESTIONS.length}</div>
     </main>
   );
-        }
+}
