@@ -4,37 +4,71 @@ import { useNavigate } from "react-router-dom";
 export default function Quiz() {
   const nav = useNavigate();
 
-  // ここは仮の診断ロジック（後で差し替えOK）
-  const doDiagnose = () => {
-    const score = Math.floor(Math.random() * 100);
-    nav("/result?score=" + score);
+  const handleAnswer = (ans) => {
+    // 結果ページへ遷移
+    nav("/result", { state: { answer: ans } });
   };
 
   return (
-    <main style={{ fontFamily: "system-ui, sans-serif", padding: 24, textAlign: "center" }}>
-      <h2>診断クイズ</h2>
-      <p>（ここに質問UIを入れていくよ）</p>
-      <button
-        onClick={doDiagnose}
-        style={{
-          marginTop: 16,
-          padding: "12px 24px",
-          borderRadius: 8,
-          border: 0,
-          background: "#ffd400",
-          fontSize: 16,
-          fontWeight: 700,
-          cursor: "pointer",
-        }}
-      >
-        診断する
-      </button>
-    </main>
-  );
-}        padding: "36px 20px",
-        textAlign: "center"
+    <main
+      style={{
+        fontFamily: "system-ui, sans-serif",
+        textAlign: "center",
+        padding: "36px 20px"
       }}
     >
+      <h2>🧩 あなたのラスボス診断 🧠</h2>
+      <p>最近よく感じることは？</p>
+
+      <div style={{ marginTop: 24 }}>
+        <button
+          onClick={() => handleAnswer("fear")}
+          style={{
+            padding: "12px 24px",
+            margin: "6px",
+            background: "#ffd400",
+            border: 0,
+            borderRadius: 8,
+            fontWeight: 700,
+            cursor: "pointer"
+          }}
+        >
+          不安が多い
+        </button>
+
+        <button
+          onClick={() => handleAnswer("anger")}
+          style={{
+            padding: "12px 24px",
+            margin: "6px",
+            background: "#ff9f43",
+            border: 0,
+            borderRadius: 8,
+            fontWeight: 700,
+            cursor: "pointer"
+          }}
+        >
+          イライラする
+        </button>
+
+        <button
+          onClick={() => handleAnswer("sadness")}
+          style={{
+            padding: "12px 24px",
+            margin: "6px",
+            background: "#48dbfb",
+            border: 0,
+            borderRadius: 8,
+            fontWeight: 700,
+            cursor: "pointer"
+          }}
+        >
+          悲しくなる
+        </button>
+      </div>
+    </main>
+  );
+}    >
       <h2 style={{ margin: 0, fontSize: 28 }}>Q{step + 1}. {QUESTIONS[step]}</h2>
 
       <div
