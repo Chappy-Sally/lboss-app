@@ -8,18 +8,13 @@ function Home() {
 
   return (
     <main className="page">
-      {/* キラキラ背景 */}
-      <div className="sparkle-bg" aria-hidden="true"></div>
-
       <img
-        src="/hero-chappy-sally.png"
+        src="hero-chappy-sally.png"  /* ← 先頭スラッシュなし（public直下） */
         alt="Chappy & Sally"
         className="hero"
       />
-
       <h1 className="title">💥 ラスボス退治アプリ ⚔️</h1>
       <p className="lead">あなたの中のラスボスを診断して、光のステージへ✨</p>
-
       <button className="primary" onClick={() => nav("/quiz")}>
         スタート！
       </button>
@@ -35,4 +30,4 @@ export default function App() {
       <Route path="/result" element={<Result />} />
     </Routes>
   );
-}
+    }
